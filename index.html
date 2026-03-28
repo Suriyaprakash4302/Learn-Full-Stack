@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Arun Kumar - Full Stack Developer Portfolio. Available for freelance projects." />
+  <title>Arun Kumar | Full Stack Developer</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #222;
+      background: #f5f5f0;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ── Navigation ── */
+    nav {
+      background: #1E3A5F;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: #B5D4F4;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    /* ── Hero / Header ── */
+    header {
+      background: #E6F1FB;
+      padding: 60px 40px;
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #185FA5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 36px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .hero-text h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: #0C447C;
+    }
+    .hero-text p {
+      font-size: 16px;
+      color: #185FA5;
+      margin-top: 8px;
+      max-width: 520px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .btn-primary {
+      background: #185FA5;
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: #0C447C; }
+    .btn-outline {
+      background: transparent;
+      color: #185FA5;
+      border: 2px solid #185FA5;
+      padding: 10px 24px;
+      border-radius: 6px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover { background: #185FA5; color: #fff; }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 40px;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 32px;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1E3A5F;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #B5D4F4;
+    }
+
+    /* ── Main Content ── */
+    main { display: flex; flex-direction: column; gap: 40px; }
+
+    /* Skills */
+    .skills-list { display: flex; flex-direction: column; gap: 10px; }
+    .skill-row { display: flex; align-items: center; gap: 12px; }
+    .skill-name { font-size: 14px; color: #444; width: 100px; flex-shrink: 0; }
+    .skill-bar {
+      flex: 1;
+      height: 8px;
+      background: #ddd;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .skill-fill {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 1s ease;
+    }
+    .skill-percent { font-size: 13px; color: #888; width: 36px; text-align: right; }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    article.project-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #fff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    article.project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+    }
+    .card-banner {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .card-body { padding: 14px; }
+    .card-body h3 { font-size: 15px; font-weight: 600; color: #1E3A5F; }
+    .card-body p { font-size: 13px; color: #666; margin-top: 4px; }
+    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+    .tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 99px;
+      font-weight: 500;
+    }
+    .tag-html { background: #FAECE7; color: #712B13; }
+    .tag-css  { background: #E6F1FB; color: #0C447C; }
+    .tag-js   { background: #FAEEDA; color: #633806; }
+
+    /* Contact Form */
+    .contact-form {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 4px; }
+    .form-group label { font-size: 13px; color: #555; font-weight: 500; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 9px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background: #fafafa;
+      color: #222;
+      transition: border-color 0.2s;
+      font-family: inherit;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #185FA5;
+      background: #fff;
+    }
+    .form-group textarea { height: 100px; resize: vertical; }
+    .form-submit { margin-top: 16px; width: 100%; }
+
+    /* ── Sidebar ── */
+    aside { display: flex; flex-direction: column; gap: 24px; }
+
+    .profile-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+    }
+    .profile-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: #1D9E75;
+      color: #fff;
+      font-size: 28px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .profile-card h2 { font-size: 17px; font-weight: 700; color: #1E3A5F; }
+    .profile-card .role { font-size: 13px; color: #555; }
+    .profile-card .location { font-size: 12px; color: #999; margin-top: 2px; }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .stat-box {
+      background: #f5f5f0;
+      border-radius: 8px;
+      padding: 10px;
+      text-align: center;
+    }
+    .stat-box .num { font-size: 20px; font-weight: 700; color: #1E3A5F; }
+    .stat-box .lbl { font-size: 11px; color: #888; }
+
+    /* About Table */
+    .about-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    .info-table { width: 100%; border-collapse: collapse; }
+    .info-table tr { border-bottom: 1px solid #f0f0f0; }
+    .info-table tr:last-child { border-bottom: none; }
+    .info-table td { padding: 8px 4px; font-size: 13px; }
+    .info-table td:first-child { color: #888; width: 90px; }
+    .info-table td:last-child { color: #222; font-weight: 500; }
+
+    /* ── Footer ── */
+    footer {
+      background: #1E3A5F;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p { color: #B5D4F4; font-size: 13px; }
+    .footer-links { display: flex; gap: 20px; }
+    .footer-links a { color: #B5D4F4; font-size: 13px; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      nav { padding: 0 16px; }
+      .nav-links { gap: 16px; }
+      header { flex-direction: column; padding: 36px 16px; text-align: center; }
+      .hero-buttons { justify-content: center; }
+      .container { grid-template-columns: 1fr; padding: 24px 16px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 10px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ SEMANTIC: Navigation -->
+  <nav>
+    <span class="nav-logo">Arun.dev</span>
+    <ul class="nav-links">
+      <li><a href="#home" class="active">Home</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ✅ SEMANTIC: Hero Header -->
+  <header id="home">
+    <figure class="avatar" aria-label="Profile avatar">A</figure>
+    <div class="hero-text">
+      <h1>Hi, I'm Arun — Full Stack Developer</h1>
+      <p>Building modern web apps with React, Angular &amp; Node.js. Based in Cuddalore, Tamil Nadu. Available for freelance projects worldwide.</p>
+      <div class="hero-buttons">
+        <a href="#projects"><button class="btn-primary">View my projects</button></a>
+        <a href="#contact"><button class="btn-outline">Contact me</button></a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ✅ SEMANTIC: Main layout with Aside -->
+  <div class="container">
+
+    <!-- ✅ SEMANTIC: Main Content -->
+    <main>
+
+      <!-- ✅ SEMANTIC: Skills Section -->
+      <section id="skills" aria-labelledby="skills-heading">
+        <h2 class="section-title" id="skills-heading">Skills</h2>
+        <div class="skills-list">
+          <div class="skill-row">
+            <span class="skill-name">HTML5</span>
+            <div class="skill-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+              <div class="skill-fill" style="width: 90%; background: #185FA5;"></div>
+            </div>
+            <span class="skill-percent">90%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">CSS3</span>
+            <div class="skill-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+              <div class="skill-fill" style="width: 80%; background: #0F6E56;"></div>
+            </div>
+            <span class="skill-percent">80%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">JavaScript</span>
+            <div class="skill-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+              <div class="skill-fill" style="width: 70%; background: #BA7517;"></div>
+            </div>
+            <span class="skill-percent">70%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">React</span>
+            <div class="skill-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100">
+              <div class="skill-fill" style="width: 55%; background: #534AB7;"></div>
+            </div>
+            <span class="skill-percent">55%</span>
+          </div>
+          <div class="skill-row">
+            <span class="skill-name">Node.js</span>
+            <div class="skill-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+              <div class="skill-fill" style="width: 50%; background: #639922;"></div>
+            </div>
+            <span class="skill-percent">50%</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ SEMANTIC: Projects Section with Articles -->
+      <section id="projects" aria-labelledby="projects-heading">
+        <h2 class="section-title" id="projects-heading">Projects</h2>
+        <div class="projects-grid">
+
+          <article class="project-card">
+            <div class="card-banner" style="background:#EBF3FB; color:#0C447C;">Weather App</div>
+            <div class="card-body">
+              <h3>Weather App</h3>
+              <p>Live weather data using the OpenWeatherMap Fetch API. Shows temperature, humidity and conditions.</p>
+              <div class="card-tags">
+                <span class="tag tag-html">HTML5</span>
+                <span class="tag tag-css">CSS3</span>
+                <span class="tag tag-js">JavaScript</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="card-banner" style="background:#E1F5EE; color:#085041;">Task Manager</div>
+            <div class="card-body">
+              <h3>Task Manager</h3>
+              <p>Full CRUD task app with localStorage persistence. Add, edit, complete and delete tasks.</p>
+              <div class="card-tags">
+                <span class="tag tag-html">HTML5</span>
+                <span class="tag tag-css">CSS3</span>
+                <span class="tag tag-js">JavaScript</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="card-banner" style="background:#FAEEDA; color:#633806;">Portfolio Site</div>
+            <div class="card-body">
+              <h3>This Portfolio</h3>
+              <p>Personal portfolio site built with pure HTML5 semantic elements and CSS3. Deployed on Netlify.</p>
+              <div class="card-tags">
+                <span class="tag tag-html">HTML5</span>
+                <span class="tag tag-css">CSS3</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ✅ SEMANTIC: Contact Section with Form -->
+      <section id="contact" aria-labelledby="contact-heading">
+        <h2 class="section-title" id="contact-heading">Contact me</h2>
+        <div class="contact-form">
+          <form action="#" method="POST" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Full name</label>
+                <input type="text" id="name" name="name" placeholder="Your full name" required autocomplete="name" />
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" name="email" placeholder="you@email.com" required autocomplete="email" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="project-type">Project type</label>
+                <select id="project-type" name="project-type">
+                  <option value="">Select a type</option>
+                  <option value="saas">SaaS / Web App</option>
+                  <option value="ecommerce">E-commerce</option>
+                  <option value="landing">Landing Page</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="budget">Budget (USD)</label>
+                <input type="text" id="budget" name="budget" placeholder="e.g. $500 – $1000" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button type="submit" class="btn-primary form-submit">Send message</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- ✅ SEMANTIC: Sidebar Aside -->
+    <aside aria-label="Profile sidebar">
+
+      <div class="profile-card">
+        <div class="profile-avatar" aria-hidden="true">A</div>
+        <h2>Arun Kumar</h2>
+        <p class="role">Full Stack Developer</p>
+        <p class="location">Cuddalore, Tamil Nadu, India</p>
+        <div class="stats">
+          <div class="stat-box"><div class="num">3</div><div class="lbl">Projects</div></div>
+          <div class="stat-box"><div class="num">6mo</div><div class="lbl">Learning</div></div>
+          <div class="stat-box"><div class="num">2</div><div class="lbl">Stacks</div></div>
+          <div class="stat-box"><div class="num">Open</div><div class="lbl">To hire</div></div>
+        </div>
+      </div>
+
+      <div class="about-card">
+        <h2 class="section-title">About</h2>
+        <!-- ✅ TABLE: key-value info -->
+        <table class="info-table">
+          <caption class="sr-only">Developer information</caption>
+          <tbody>
+            <tr><td>Stack</td><td>React, Angular, Node.js</td></tr>
+            <tr><td>Available</td><td>Freelance</td></tr>
+            <tr><td>Rate</td><td>$25 – $75 / hr</td></tr>
+            <tr><td>Email</td><td>arun@dev.com</td></tr>
+            <tr><td>GitHub</td><td>github.com/arun</td></tr>
+            <tr><td>Location</td><td>Tamil Nadu, India</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </aside>
+
+  </div>
+
+  <!-- ✅ SEMANTIC: Footer -->
+  <footer>
+    <p>&copy; 2026 Arun.dev &mdash; Built with HTML5 &amp; CSS3</p>
+    <nav class="footer-links" aria-label="Social links">
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://upwork.com" target="_blank" rel="noopener">Upwork</a>
+      <a href="https://fiverr.com" target="_blank" rel="noopener">Fiverr</a>
+    </nav>
+  </footer>
+
+</body>
+</html>
